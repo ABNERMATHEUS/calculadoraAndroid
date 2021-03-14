@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
                 result = calculadora.mutiplicacao(valor1Double,valor2Double);
                 break;
             case "/" :
+                if(valor2Double <= 0.0){
+                    Toast.makeText(MainActivity.this,"Divisão infinito",Toast.LENGTH_LONG).show();
+                    resultView.setText("Result:");
+                    return;
+                }
                 result = calculadora.divisao(valor1Double,valor2Double);
                 break;
             default:
@@ -49,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         resultView.setText("Result: "+String.valueOf(result));
-
     }
 
 
